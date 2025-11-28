@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Key</title>
+<style>
+  body { margin:0; background-color:#000; display:flex; justify-content:center; align-items:center; height:100vh; font-family:sans-serif; color:#fff; }
+  .container { border:1px solid rgba(255,255,255,0.3); padding:20px 30px; border-radius:12px; text-align:center; }
+  .key-text { font-size:18px; margin-bottom:12px; }
+  .get-btn { background:linear-gradient(45deg,#8000ff,#c080ff); color:#fff; border:none; padding:10px 20px; font-size:16px; border-radius:8px; cursor:pointer; box-shadow:0 0 15px #c080ff; transition:0.3s; }
+  .get-btn:hover { box-shadow:0 0 25px #ff80ff; transform:scale(1.05); }
+  #adOverlay { position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.9); display:flex; justify-content:center; align-items:center; display:none; flex-direction:column; }
+  #adOverlay img { max-width:90%; border-radius:8px; }
+  #adOverlay div { margin-top:10px; font-size:20px; color:#fff; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="key-text">flyVegxx0564232</div>
+    <button class="get-btn" id="getKeyBtn">Get Key</button>
+  </div>
+
+  <div id="adOverlay">
+    <img src="https://via.placeholder.com/300x250.png?text=広告バナー" alt="広告">
+    <div id="countdown">広告終了まで3秒</div>
+  </div>
+
+<script>
+const getKeyBtn = document.getElementById('getKeyBtn');
+const adOverlay = document.getElementById('adOverlay');
+const countdown = document.getElementById('countdown');
+const key = "https://discord.gg/YZtXz2rV4h";
+
+getKeyBtn.addEventListener('click', () => {
+  adOverlay.style.display = 'flex';
+  let time = 3;
+  countdown.textContent = `広告終了まで${time}秒`;
+  const timer = setInterval(() => {
+    time--;
+    countdown.textContent = `広告終了まで${time}秒`;
+    if(time <= 0){
+      clearInterval(timer);
+      adOverlay.style.display = 'none';
+      if(confirm("URLをコピーしてもいいですか？")) {
+        navigator.clipboard.writeText(key).then(() => {
+          alert("URLがコピーされました！");
+        }).catch(() => {
+          alert("コピーできませんでした。手動でコピーしてください。");
+        });
+      } else {
+        alert("コピーはキャンセルされました。");
+      }
+    }
+  },1000);
+});
+</script>
+</body>
+</html>

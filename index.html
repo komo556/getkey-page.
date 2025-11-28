@@ -1,59 +1,39 @@
-<!DOCTYPE html>
-<html lang="ja">
+<!DOCTYPE html><html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Get Key</title>
+<title>Discord招待</title>
 <style>
-  body { margin:0; background-color:#000; display:flex; justify-content:center; align-items:center; height:100vh; font-family:sans-serif; color:#fff; }
-  .container { border:1px solid rgba(255,255,255,0.3); padding:20px 30px; border-radius:12px; text-align:center; }
-  .key-text { font-size:18px; margin-bottom:12px; }
-  .get-btn { background:linear-gradient(45deg,#8000ff,#c080ff); color:#fff; border:none; padding:10px 20px; font-size:16px; border-radius:8px; cursor:pointer; box-shadow:0 0 15px #c080ff; transition:0.3s; }
-  .get-btn:hover { box-shadow:0 0 25px #ff80ff; transform:scale(1.05); }
-  #adOverlay { position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.9); display:flex; justify-content:center; align-items:center; display:none; flex-direction:column; }
-  #adOverlay img { max-width:90%; border-radius:8px; }
-  #adOverlay div { margin-top:10px; font-size:20px; color:#fff; }
+  body { background: #000; color: #fff; font-family: sans-serif; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; margin:0; }
+  .container { border: 1px solid #444; padding: 20px; border-radius: 10px; text-align:center; }
+  .btn { margin-top: 10px; padding: 10px 20px; border:none; border-radius:5px; background: purple; color: #fff; font-weight:bold; cursor:pointer; font-size:16px; }
+  #adOverlay { position:fixed; top:0; left:0; width:100%; height:100%; background:#000; display:flex; align-items:center; justify-content:center; color:#fff; font-size:24px; z-index:1000; display:none; }
+  #closeBtn { position:absolute; top:10px; right:10px; background:#fff; color:#000; border:none; padding:5px 10px; border-radius:5px; cursor:pointer; display:none; }
 </style>
 </head>
 <body>
-  <div class="container">
-    <div class="key-text">flyVegxx0564232</div>
-    <button class="get-btn" id="getKeyBtn">Get Key</button>
-  </div>
+<div class="container">
+  <div>Discordへ参加</div>
+  <button class="btn" id="getInvite">招待コードを受け取る</button>
+</div><div id="adOverlay">
+  広告表示中…
+  <button id="closeBtn">×</button>
+</div><script>
+const inviteURL = "https://discord.gg/YZtXz2rV4h";
+const getBtn = document.getElementById("getInvite");
+const adOverlay = document.getElementById("adOverlay");
+const closeBtn = document.getElementById("closeBtn");
 
-  <div id="adOverlay">
-    <img src="https://via.placeholder.com/300x250.png?text=広告バナー" alt="広告">
-    <div id="countdown">広告終了まで3秒</div>
-  </div>
-
-<script>
-const getKeyBtn = document.getElementById('getKeyBtn');
-const adOverlay = document.getElementById('adOverlay');
-const countdown = document.getElementById('countdown');
-const key = "https://discord.gg/YZtXz2rV4h";
-
-getKeyBtn.addEventListener('click', () => {
-  adOverlay.style.display = 'flex';
-  let time = 3;
-  countdown.textContent = `広告終了まで${time}秒`;
-  const timer = setInterval(() => {
-    time--;
-    countdown.textContent = `広告終了まで${time}秒`;
-    if(time <= 0){
-      clearInterval(timer);
-      adOverlay.style.display = 'none';
-      if(confirm("URLをコピーしてもいいですか？")) {
-        navigator.clipboard.writeText(key).then(() => {
-          alert("URLがコピーされました！");
-        }).catch(() => {
-          alert("コピーできませんでした。手動でコピーしてください。");
-        });
-      } else {
-        alert("コピーはキャンセルされました。");
-      }
-    }
-  },1000);
+getBtn.addEventListener("click", () => {
+  adOverlay.style.display = "flex"; // 広告表示
+  setTimeout(() => {
+    closeBtn.style.display = "block"; // 5秒後に×ボタン表示
+  }, 5000);
 });
-</script>
-</body>
+
+closeBtn.addEventListener("click", () => {
+  adOverlay.style.display = "none"; // 広告閉じる
+  window.location.href = inviteURL; // Discordに移動
+});
+</script></body>
 </html>

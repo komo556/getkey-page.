@@ -3,38 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <title>ディスコードに参加</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-    body { font-family: sans-serif; text-align: center; margin-top: 100px; background: #f0f0f0; }
-    #btn { padding: 15px 30px; background: #5865F2; color: white; font-size: 20px;
-        border: none; border-radius: 8px; cursor: pointer; }
-    #adScreen {
-        width: 100%; height: 100%; background: black; position: fixed; top: 0; left: 0;
-        display: none; justify-content: center; align-items: center; color: white;
-        font-size: 24px; z-index: 9999;
-    }
-    #closeAd {
-        position: absolute; top: 20px; right: 20px; font-size: 30px;
-        background: rgba(0,0,0,0.5); color: white; border: none; padding: 5px 15px;
-        border-radius: 8px; cursor: pointer; display: none;
-    }
+body { margin:0; font-family:sans-serif; background:#000; display:flex; justify-content:center; align-items:center; height:100vh; }
+.container { text-align:center; border:1px solid #444; padding:20px; border-radius:10px; background:#111; }
+.btn { padding:12px 24px; font-size:18px; color:#fff; background:purple; border:none; border-radius:8px; cursor:pointer; }
+#adOverlay { position:fixed; top:0; left:0; width:100%; height:100%; background:#000; display:none; justify-content:center; align-items:center; color:#fff; font-size:24px; z-index:1000; }
+#closeBtn { position:absolute; top:10px; right:10px; background:#fff; color:#000; border:none; padding:5px 10px; border-radius:5px; cursor:pointer; display:none; }
 </style>
 </head>
 <body>
-<button id="btn">招待コードを受け取る</button>
-<div id="adScreen">
-    <div>広告中…（5秒）</div>
-    <button id="closeAd">×</button>
+<div class="container">
+<div>ディスコードに参加</div>
+<button class="btn" id="getInvite">招待コードを受け取る</button>
+</div>
+<div id="adOverlay">
+<div>広告表示中…（5秒）</div>
+<button id="closeBtn">×</button>
 </div>
 <script>
-document.getElementById("btn").onclick = function() {
-    const ad = document.getElementById("adScreen");
-    const closeBtn = document.getElementById("closeAd");
-    ad.style.display = "flex";
+const inviteURL = "https://discord.gg/SAQ7PNp92h";
+const getBtn = document.getElementById("getInvite");
+const adOverlay = document.getElementById("adOverlay");
+const closeBtn = document.getElementById("closeBtn");
+
+getBtn.addEventListener("click", () => {
+    adOverlay.style.display = "flex";
     setTimeout(() => { closeBtn.style.display = "block"; }, 5000);
-    closeBtn.onclick = function() {
-        window.location.href = "https://discord.gg/SAQ7PNp92h";
-    };
-};
+});
+
+closeBtn.addEventListener("click", () => {
+    adOverlay.style.display = "none";
+    window.location.href = inviteURL;
+});
 </script>
 </body>
 </html>

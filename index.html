@@ -37,31 +37,6 @@ button {
     cursor:pointer;
     box-shadow:0 0 8px #a0a;
 }
-#adOverlay {
-    display:none;
-    position:fixed;
-    top:0; left:0;
-    width:100%; height:100%;
-    background:#000;
-    color:#fff;
-    font-size:24px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    z-index:1000;
-}
-#closeBtn {
-    display:none;
-    position:absolute;
-    top:10px;
-    right:10px;
-    background:#fff;
-    color:#000;
-    border:none;
-    padding:5px 10px;
-    border-radius:5px;
-    cursor:pointer;
-}
 </style>
 </head>
 <body>
@@ -70,27 +45,12 @@ button {
     <button id="getInvite">招待コードを受け取る</button>
 </div>
 
-<div id="adOverlay">
-    <div>広告表示中…（5秒）</div>
-    <button id="closeBtn">×</button>
-</div>
-
 <script>
 const inviteURL = "https://discord.gg/SAQ7PNp92h";
 const getBtn = document.getElementById("getInvite");
-const adOverlay = document.getElementById("adOverlay");
-const closeBtn = document.getElementById("closeBtn");
 
-// ボタンを押したときだけ広告を表示
 getBtn.onclick = () => {
-    adOverlay.style.display = "flex";       // 広告表示
-    setTimeout(() => { closeBtn.style.display = "block"; }, 5000); // 5秒後に×表示
-};
-
-// ×押したら広告閉じてDiscordにジャンプ
-closeBtn.onclick = () => {
-    adOverlay.style.display = "none";
-    window.location.href = inviteURL;
+    window.location.href = inviteURL; // 直接Discordに飛ぶ
 };
 </script>
 </body>

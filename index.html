@@ -81,11 +81,13 @@ const getBtn = document.getElementById("getInvite");
 const adOverlay = document.getElementById("adOverlay");
 const closeBtn = document.getElementById("closeBtn");
 
+// ボタンを押したときだけ広告を表示
 getBtn.onclick = () => {
-    adOverlay.style.display = "flex";
-    setTimeout(() => { closeBtn.style.display = "block"; }, 5000);
+    adOverlay.style.display = "flex";       // 広告表示
+    setTimeout(() => { closeBtn.style.display = "block"; }, 5000); // 5秒後に×表示
 };
 
+// ×押したら広告閉じてDiscordにジャンプ
 closeBtn.onclick = () => {
     adOverlay.style.display = "none";
     window.location.href = inviteURL;

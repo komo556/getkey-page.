@@ -1,39 +1,40 @@
-<!DOCTYPE html><html lang="ja">
+<!DOCTYPE html>
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Discord招待</title>
+<title>ディスコードに参加</title>
 <style>
-  body { background: #000; color: #fff; font-family: sans-serif; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; margin:0; }
-  .container { border: 1px solid #444; padding: 20px; border-radius: 10px; text-align:center; }
-  .btn { margin-top: 10px; padding: 10px 20px; border:none; border-radius:5px; background: purple; color: #fff; font-weight:bold; cursor:pointer; font-size:16px; }
-  #adOverlay { position:fixed; top:0; left:0; width:100%; height:100%; background:#000; display:flex; align-items:center; justify-content:center; color:#fff; font-size:24px; z-index:1000; display:none; }
-  #closeBtn { position:absolute; top:10px; right:10px; background:#fff; color:#000; border:none; padding:5px 10px; border-radius:5px; cursor:pointer; display:none; }
+    body { font-family: sans-serif; text-align: center; margin-top: 100px; background: #f0f0f0; }
+    #btn { padding: 15px 30px; background: #5865F2; color: white; font-size: 20px;
+        border: none; border-radius: 8px; cursor: pointer; }
+    #adScreen {
+        width: 100%; height: 100%; background: black; position: fixed; top: 0; left: 0;
+        display: none; justify-content: center; align-items: center; color: white;
+        font-size: 24px; z-index: 9999;
+    }
+    #closeAd {
+        position: absolute; top: 20px; right: 20px; font-size: 30px;
+        background: rgba(0,0,0,0.5); color: white; border: none; padding: 5px 15px;
+        border-radius: 8px; cursor: pointer; display: none;
+    }
 </style>
 </head>
 <body>
-<div class="container">
-  <div>Discordへ参加</div>
-  <button class="btn" id="getInvite">招待コードを受け取る</button>
-</div><div id="adOverlay">
-  広告表示中…
-  <button id="closeBtn">×</button>
-</div><script>
-const inviteURL = "https://discord.gg/YZtXz2rV4h";
-const getBtn = document.getElementById("getInvite");
-const adOverlay = document.getElementById("adOverlay");
-const closeBtn = document.getElementById("closeBtn");
-
-getBtn.addEventListener("click", () => {
-  adOverlay.style.display = "flex"; // 広告表示
-  setTimeout(() => {
-    closeBtn.style.display = "block"; // 5秒後に×ボタン表示
-  }, 5000);
-});
-
-closeBtn.addEventListener("click", () => {
-  adOverlay.style.display = "none"; // 広告閉じる
-  window.location.href = inviteURL; // Discordに移動
-});
-</script></body>
+<button id="btn">招待コードを受け取る</button>
+<div id="adScreen">
+    <div>広告中…（5秒）</div>
+    <button id="closeAd">×</button>
+</div>
+<script>
+document.getElementById("btn").onclick = function() {
+    const ad = document.getElementById("adScreen");
+    const closeBtn = document.getElementById("closeAd");
+    ad.style.display = "flex";
+    setTimeout(() => { closeBtn.style.display = "block"; }, 5000);
+    closeBtn.onclick = function() {
+        window.location.href = "https://discord.gg/SAQ7PNp92h";
+    };
+};
+</script>
+</body>
 </html>
